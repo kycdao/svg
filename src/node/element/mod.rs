@@ -85,6 +85,12 @@ impl Node for Element {
     }
 
     #[inline]
+    fn append_boxed(&mut self, node: Box<dyn Node>)
+    {
+        self.children.push(node);
+    }
+
+    #[inline]
     fn assign<T, U>(&mut self, name: T, value: U)
     where
         T: Into<String>,

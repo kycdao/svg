@@ -39,6 +39,11 @@ impl Node for Text {
     }
 
     #[inline]
+    fn append_boxed(&mut self, _: Box<dyn Node>)
+    {
+    }
+
+    #[inline]
     fn assign<T, U>(&mut self, _: T, _: U)
     where
         T: Into<String>,

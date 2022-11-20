@@ -28,6 +28,9 @@ pub trait Node:
         Self: Sized,
         T: Node;
 
+    /// Append a boxed child node.
+    fn append_boxed(&mut self, node: Box<dyn Node>);
+
     /// Assign an attribute.
     fn assign<T, U>(&mut self, _: T, _: U)
     where
@@ -107,6 +110,12 @@ macro_rules! node(
                 T: crate::node::Node,
             {
                 self.$field_name.append(node);
+            }
+
+            #[inline]
+            fn append_boxed(&mut self, node: Box<dyn crate::node::Node>)
+            {
+                self.$field_name.append_boxed(node);
             }
 
             #[inline]
